@@ -2,7 +2,6 @@
 from bs4 import BeautifulSoup
 import requests
 
-
 def url_to_soup(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
