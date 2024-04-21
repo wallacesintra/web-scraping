@@ -3,16 +3,13 @@ from bs4 import BeautifulSoup
 import requests
 
 
-# job_list = []
-# print(len(job_list))
-
 def url_to_soup(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
     
     container = soup.find_all('div', class_='flex-1 flex items-center justify-between px-4 py-3 rounded-tr-md w-full pr-4 rounded-t1-md px-4')
+    job_list = []
 
-    # job_info = {}
     for i in container:
         try:
             job_title = i.find('p', class_='text-lg font-medium break-words text-link-500').text.strip()
@@ -43,7 +40,7 @@ def url_to_soup(url):
     return job_list
 
 
-job_list = []
+
 result = url_to_soup("https://www.brightermonday.co.ke/jobs/accounting-auditing-finance")
 # print(result)
 print(len(result))
